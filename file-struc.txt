@@ -1,0 +1,47 @@
+# simple pipe, N3 correction, nlin fit to model, classification, lobes. (stats)
+
+<filename>.mnc
+
+
+# 03-nuc  N3
+minc_proc/03-nuc/<filename>.03-nuc.mnc
+                 <filename>.03-nuc.imp
+                 <filename>.03-nuc.field.mnc
+                 
+                 <filename>.03-nuc.jpg
+                 <filename>.03-nuc.field.jpg
+
+
+# 11-mdl  reg to <model>
+minc_proc/11-mdl/<model>.mnc                  # link
+                 <filename>.11-mdl.lin.mnc
+                 <filename>.11-mdl.lin.xfm
+                 <filename>.11-mdl.lin.jpg
+                 
+                 <filename>.11-mdl.nlin.mnc
+                 <filename>.11-mdl.nlin.xfm
+                 <filename>.11-mdl.nlin.conf
+                 <filename>.11-mdl.nlin.jpg
+
+
+# 14-cls  classification (looks for 11-mdl)
+minc_proc/14-cls/<filename>.14-cls.mnc
+                 <filename>.14-cls.jpg
+                 <filename>.14-cls.stats.txt
+
+
+# 14-lbs  lobe classification
+minc_proc/14-lbs/<filename>.14-lbs.mnc
+                 <filename>.14-lbs.jpg
+                 <filename>.14-lbs.stats.txt
+                 
+                 <filename>.14-lbs.lobe-defs.txt
+
+
+# 
+
+
+
+
+
+# also want: Create a nonlinear symetric model that can feed into above

@@ -2,8 +2,7 @@
 #
 # Andrew L Janke <a.janke@gmail.com>
 #
-# initial crack at a PySide doo-dad for a GUI
-# front end for using nu_correct
+# A PySide GUI app for N3
 
 
 import signal
@@ -77,6 +76,9 @@ class MainWindow(QDialog):
       self.outedit = QLineEdit("")
       self.outbutton = QPushButton("choose file")       
       
+      self.fieldlabel = QLabel("correction field:")
+      self.fieldpixmap = QLabel("field")
+      
       self.commandlabel = QLabel("command:")
       self.commandtext = QPlainTextEdit("...")
       
@@ -104,6 +106,9 @@ class MainWindow(QDialog):
       self.ohlayout.addWidget(self.outedit)
       self.ohlayout.addWidget(self.outbutton)
       vlayout.addLayout(self.ohlayout)
+      
+      vlayout.addWidget(self.fieldlabel)
+      vlayout.addWidget(self.fieldpixmap)
       
       vlayout.addWidget(self.commandlabel)
       vlayout.addWidget(self.commandtext)
@@ -145,15 +150,20 @@ class MainWindow(QDialog):
          self.commandlabel.setText('Processing running')
          self.gobutton.setEnabled(False)
 
-   def cmdcomplete(self,data):
-      print("Done")
+   def cmdcomplete(self, data):
+      print(">>>>Done>>>>")
       self.commandtext.appendPlainText(">>>>Done>>>> "+data)
+      
+      pixmap = QPixmap("minc_proc/03-nuc/orig.a.mnc.jpg")
+      self.fieldpixmap.setPixmap(pixmap)
+      
+      
       self.gobutton.setEnabled(True)
    
-   def cmdupdate_o(self,data):
+   def cmdupdate_o(self, data):
       self.stdouttext.appendPlainText(data)
    
-   def cmdupdate_e(self,data):
+   def cmdupdate_e(self, data):
       self.stderrtext.appendPlainText(data)
    
    # select infile
